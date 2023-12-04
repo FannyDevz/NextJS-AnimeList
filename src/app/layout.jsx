@@ -1,6 +1,6 @@
 import {Gabarito, Poppins} from 'next/font/google'
 import './globals.css'
-import Navbar from "@/components/Utilities/Navbar";
+import Navbar from "@/components/Navbar";
 
 const poppins = Poppins({ subsets: ['latin'] , weight: ['400', '700'] })
 

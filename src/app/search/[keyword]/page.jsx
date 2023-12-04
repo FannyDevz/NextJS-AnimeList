@@ -6,11 +6,12 @@ const Page  =  async ({params}) => {
     const keyword = params.keyword;
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/anime?q=${keyword}`);
     const searchAnime = await response.json()
+    const decodedKeyword = decodeURI(keyword)
 
     return (
         <div>
             <section>
-                <Header title={`Pencarian ${keyword} ... `}/>
+                <Header title={`Pencarian ${decodedKeyword}... `}/>
                 <AnimeList api={searchAnime}/>
             </section>
         </div>
