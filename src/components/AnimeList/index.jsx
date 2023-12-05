@@ -1,3 +1,4 @@
+"use client"
 import Image from 'next/image'
 import Link from "next/link";
 import {FileSearch} from "@phosphor-icons/react";
@@ -5,8 +6,9 @@ const AnimeList  = ({api}) => {
     return (
         <>
             {api.pagination?.items.total === 0  ? (
-                <div className="min-h-screen max-w-xl mx-auto flex justify-center items-center">
+                <div className="min-h-screen max-w-xl  mx-auto flex justify-center items-center pb-32">
                     <div className="flex flex-col justify-center items-center gap-4">
+                        <FileSearch className="text-color-accent " size={120} />
                         <h3 className="text-4xl font-bold text-color-accent "> NOT FOUND</h3>
                         <Link className="text-color-primary hover:text-color-accent transition-all underline" href="/">
                             Back

@@ -1,12 +1,9 @@
 import AnimeList from "@/components/AnimeList";
-import SearchAnime from "@/components/SearchAnime";
-import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
-import Link from "next/link";
 import Header from "@/components/AnimeList/Header";
-const Home  = async () => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/top/anime?limit=8`);
-    const topAnime = await response.json()
+import {getAnimeResponse} from "@/libs/api-libs";
 
+const Home  = async () => {
+    const topAnime = await getAnimeResponse({resource: "top/anime", query: "limit=8"})
     return (
         <div>
             <section>
