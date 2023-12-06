@@ -5,13 +5,18 @@ export const getAnimeResponse = async ({resource, query} ) => {
     return await response.json()
 }
 
-export const getNestedAnimeResponse = async ({resource, objectProperty } ) => {
-    const response = await getAnimeResponse({resource : resource})
+export const getNestedAnimeResponse = async ({ resource, objectProperty }) => {
+    const response = await getAnimeResponse({ resource: resource });
+
     if (!response || !response.data) {
         console.error('Error: Response or response.data is undefined.');
         return [];
     }
-    return response.data.flatMap(item => item.entry)
+    if (!Array.isArray(response.data)) {
+        console.error('Error: Response data is not an array.');
+        return [];
+    }
+    return response.data.flatMap(item => (item && item.entry) ? item.entry : []);
 }
 
 export function shuffleArray(array, slice) {

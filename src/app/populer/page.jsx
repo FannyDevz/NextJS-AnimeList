@@ -16,7 +16,7 @@ const Page  =  () => {
     }
 
     useEffect(() => {
-        fetchData()
+        fetchData().then(r => (console.log(r)))
     }, [page]);
 
     return (

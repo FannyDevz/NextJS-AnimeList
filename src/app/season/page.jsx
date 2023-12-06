@@ -1,7 +1,6 @@
 "use client"
 import AnimeList from "@/components/AnimeListInfinity";
 import HeaderMenu from "@/components/Utilities/HeaderMenu";
-// import Pagination from "@/components/Utilities/Pagination";
 import Header from "@/components/AnimeListInfinity/Header";
 import {useEffect, useState} from "react";
 import {getAnimeResponse} from "@/libs/api-libs";
