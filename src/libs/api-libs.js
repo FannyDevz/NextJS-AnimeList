@@ -8,6 +8,10 @@ export const getAnimeResponse = async ({resource, query} ) => {
 
 export const getNestedAnimeResponse = async ({resource, objectProperty } ) => {
     const response = await getAnimeResponse({resource : resource})
+    if (!response || !response.data) {
+        console.error('Error: Response or response.data is undefined.');
+        return [];
+    }
     return response.data.flatMap(item => item.entry)
 }
 
