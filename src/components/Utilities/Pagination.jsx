@@ -28,6 +28,7 @@ const Pagination = ({ page, lastPage, setPage }) => {
             <input
                 className="bg-color-accent p-2 rounded text-color-dark appearance-none w-20 text-center"
                 placeholder="Go to Page"
+                defaultValue={page}
                 value={page}
                 onChange={(e) => {
                     const pageNumber = parseInt(e.target.value);

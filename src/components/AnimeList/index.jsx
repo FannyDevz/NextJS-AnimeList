@@ -18,7 +18,14 @@ const AnimeList  = ({api}) => {
             ) : (
             <div className="grid sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-8 grid-cols-2 gap-4 px-4">
                 {api.data?.map((anime) => (
-                        <div key={anime.mal_id} className="shadow-xl bg-color-darksecondary">
+                        <div key={anime.mal_id} className="shadow-xl bg-color-darksecondary relative hover:scale-105 transition-all duration-300 hover:opacity-75">
+                            {anime.type ? (
+                                <div className="font-bold lg:text-md md:text-md text-sm p-2  bg-color-accent text-color-dark absolute right-0 top-0 text-right opacity-90">
+                                     <h3 className="text-xs font-semibold">{anime.type} </h3>
+                                </div>
+                            ) : null
+                            }
+
                             <Link
                                 href={`/anime/${anime.mal_id}`}
                                 className="cursor-pointer text-color-primary hover:text-color-accent transition-all"
@@ -31,7 +38,7 @@ const AnimeList  = ({api}) => {
                                     alt="..."
                                     src={anime.images.webp.image_url}
                                 />
-                                <h3 className="font-bold lg:text-md md:text-md text-sm p-4 text-center ">
+                                <h3 className="font-bold lg:text-md md:text-md text-sm p-4 text-center">
                                     {anime.title}
                                 </h3>
                             </Link>

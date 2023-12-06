@@ -14,13 +14,13 @@ const Page = async ({params: {id}}) =>{
             <div className="flex sm:flex-nowrap flex-wrap gap-2 text-color-primary px-8 pt-4 items-center mb-4">
 
                 <div className="flex-col flex text-color-primary sm:flex-nowrap flex-wrap">
-                    <h1 className="text-2xl font-semibold text-color-primary ">
+                    <a href={anime.data.url} target="_blank" className="text-xs text-color-primary hover:text-color-accent transition-all underline">My Anime List Page</a>
+                    <h1 className="text-3xl font-semibold text-color-primary ">
                         {anime.data.title}
                     </h1>
                     <p className="text-lg text-color-primary opacity-50">
                         {anime.data.title_english}
                     </p>
-
                 </div>
 
             </div>

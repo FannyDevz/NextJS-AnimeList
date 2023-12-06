@@ -8,16 +8,16 @@
     padding: 0;
 }
 
-img {
-    transition: .3s ease all;
-    -webkit-transition: .3s ease all;
-    -moz-transition: .3s ease all;
-    -ms-transition: .3s ease all;
-    -o-transition: .3s ease all;
-}
-img:hover{
-    scale: 102%;
-}
+/*img {*/
+/*    transition: .3s ease all;*/
+/*    -webkit-transition: .3s ease all;*/
+/*    -moz-transition: .3s ease all;*/
+/*    -ms-transition: .3s ease all;*/
+/*    -o-transition: .3s ease all;*/
+/*}*/
+/*img:hover{*/
+/*    scale: 102%;*/
+/*}*/
 
 .custom-loader {
     width: 100px;
