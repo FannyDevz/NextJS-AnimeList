@@ -157,7 +157,7 @@ const Page = async ({params: {id}}) =>{
                     {anime.data.producers ? (
                     <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
                         <span className="text-sm">Producers :</span>
-                        <span className="text-sm">{anime.data.producers.map((producer, index) => (  index === anime.data.producers.length - 1 ? <span key={index}>{producer.name}</span> : <span key={index}>{producer.name}</span> + " , "))}</span>
+                        <span className="text-sm">{anime.data.producers.map((producer, index) => (  index === anime.data.producers.length - 1 ? producer.name : producer.name + " , "))}</span>
                     </div>
                     ) : null}
                 </div>
