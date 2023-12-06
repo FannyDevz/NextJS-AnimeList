@@ -20,7 +20,7 @@ module.exports = {
         accentsecondary: '#6FFFFF',
         secondary: '#8892B0',
         dark: '#0A192F',
-        darksecondary: '#0F1F3A',
+        darksecondary: '#0F0F3A',
         success: '#00ADB5',
         error: '#EF476F',
         }

@@ -9,7 +9,8 @@ const Page  =  async ({params}) => {
     const decodedKeyword = decodeURI(keyword)
 
     return (
-        <div>
+
+        <div className="container mx-auto mt-8 mb-4">
             <section>
                 <Header title={`Pencarian ${decodedKeyword}... `}/>
                 <AnimeList api={searchAnime}/>

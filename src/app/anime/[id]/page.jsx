@@ -6,11 +6,9 @@ import Link from "next/link";
 
 const Page = async ({params: {id}}) =>{
     const anime = await getAnimeResponse({resource: `anime/${id}`})
-    console.log(anime)
-
     return (
         <>
-        <div className="container mx-auto mt-8 ">
+            <div className="container mx-auto mt-8 mb-4">
             <div className="flex sm:flex-nowrap flex-wrap gap-2 text-color-primary px-8 pt-4 items-center mb-4">
 
                 <div className="flex-col flex text-color-primary sm:flex-nowrap flex-wrap">
@@ -67,11 +65,11 @@ const Page = async ({params: {id}}) =>{
                     </div>
                     <div className="w-full">
                         <h3 className="text-lg font-semibold">Synopsis</h3>
-                        <p className="w-full text-justify text-sm">{anime.data.synopsis}</p>
+                        <p className="w-full text-justify text-sm">{anime.data.synopsis ? (anime.data.synopsis) : "..."}</p>
                     </div>
                     <div className="w-full">
                         <h3 className="text-lg font-semibold">Background</h3>
-                        <p className="w-full text-justify text-sm">{anime.data.background}</p>
+                        <p className="w-full text-justify text-sm">{anime.data.background ? (anime.data.background) : "..."}</p>
                     </div>
 
                 </div>
@@ -84,7 +82,7 @@ const Page = async ({params: {id}}) =>{
                     </div>
                 </div>
             </div>
-            <div className="flex flex-row px-8 ">
+            <div className="flex flex-row px-8 mb-24">
                 <div className="flex flex-col w-full bg-color-darksecondary ">
                     {anime.data.type ? (
                     <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">

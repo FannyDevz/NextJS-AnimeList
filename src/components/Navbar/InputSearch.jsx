@@ -11,7 +11,7 @@ const InputSearch = () => {
     const handleSearch = (event) => {
 
         const key = searchRef.current.value
-        if (!key) return
+        if (!key || key.trim() === "") return
         if (event.key === 'Enter' || event.type === 'click') {
             event.preventDefault();
             router.push(`/search/${key}`)
@@ -19,7 +19,7 @@ const InputSearch = () => {
     }
 
     return (
-        <div className="relative">
+        <div className="relative w-full">
             <input placeholder="search" className="bg-color-dark w-full p-2 rounded text-color-primary" ref={searchRef}
                    onKeyDown={handleSearch}/>
             <button className="absolute top-2 end-2 " onClick={handleSearch} >

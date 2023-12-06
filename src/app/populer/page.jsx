@@ -20,7 +20,8 @@ const Page  =  () => {
     }, [page]);
 
     return (
-        <div>
+
+        <div className="container mx-auto mt-8 mb-4">
             <header>
                 <HeaderMenu title={`Popular Anime `} description={`List of popular anime ${page !== 1 ? `#${page}` : ''}`}/>
             </header>
