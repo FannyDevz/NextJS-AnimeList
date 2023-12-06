@@ -87,80 +87,79 @@ const Page = async ({params: {id}}) =>{
                 <div className="flex flex-col w-full bg-color-darksecondary ">
                     {anime.data.type ? (
                     <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <h4 className="text-sm">Type :</h4>
-                        <h4 className="text-sm">{anime.data.type}</h4>
+                        <span className="text-sm">Type :</span>
+                        <span className="text-sm">{anime.data.type}</span>
                     </div>
                     ) : null}
                     {anime.data.episodes ? (
                     <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <h4 className="text-sm">Episodes :</h4>
-                        <h4 className="text-sm">{anime.data.episodes}</h4>
+                        <span className="text-sm">Episodes :</span>
+                        <span className="text-sm">{anime.data.episodes}</span>
                     </div>
                     ) : null}
                     {anime.data.genres ? (
                     <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <h4 className="text-sm">Genre :</h4>
-                        <h4 className="text-sm">{anime.data.genres.map((genre, index) => (  index === anime.data.genres.length - 1 ? (
-                            <>
+                        <span className="text-sm">Genre :</span>
+                        <span className="text-sm">{anime.data.genres.map((genre, index) => (  index === anime.data.genres.length - 1 ? (
+                            <span key={index}>
                                 <Link href={`${genre.type}/genre/${genre.name}`} className="text-color-primary hover:text-color-accent transition-all">{genre.name}</Link>
-                            </>
+                            </span>
                         ) : (
-                            <>
+                            <span key={index}>
                                 <Link href={`${genre.type}/genre/${genre.name}`} className="text-color-primary hover:text-color-accent transition-all">{genre.name}</Link><> , </>
-                            </>
+                            </span>
                         )))}
-                        </h4>
+                        </span>
                     </div>
                     ) : null}
                     {anime.data.source ? (
                     <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <h4 className="text-sm">Source :</h4>
-                        <h4 className="text-sm">{anime.data.source}</h4>
+                        <span className="text-sm">Source :</span>
+                        <span className="text-sm">{anime.data.source}</span>
                     </div>
                     ) : null}
                     {anime.data.status ? (
                     <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <h4 className="text-sm">Status :</h4>
-                        <h4 className="text-sm">{anime.data.status}</h4>
+                        <span className="text-sm">Status :</span>
+                        <span className="text-sm">{anime.data.status}</span>
                     </div>
                     ) : null}
                     {anime.data.aired.string ? (
                     <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <h4 className="text-sm">Airing :</h4>
-                        <h4 className="text-sm">{anime.data.aired.string}</h4>
+                        <span className="text-sm">Airing :</span>
+                        <span className="text-sm">{anime.data.aired.string}</span>
                     </div>
                     ) : null}
                     {anime.data.duration ? (
                     <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <h4 className="text-sm">Duration :</h4>
-                        <h4 className="text-sm">{anime.data.duration}</h4>
+                        <span className="text-sm">Duration :</span>
+                        <span className="text-sm">{anime.data.duration}</span>
                     </div>
                     ) : null}
                     {anime.data.rating ? (
                     <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <h4 className="text-sm">Rating :</h4>
-                        <h4 className="text-sm">{anime.data.rating}</h4>
+                        <span className="text-sm">Rating :</span>
+                        <span className="text-sm">{anime.data.rating}</span>
                     </div>
                     ) : null}
                     {anime.data.favorites ? (
                     <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <h4 className="text-sm">Favorites :</h4>
-                        <h4 className="text-sm">{anime.data.favorites}</h4>
+                        <span className="text-sm">Favorites :</span>
+                        <span className="text-sm">{anime.data.favorites}</span>
                     </div>
                     ) : null}
                     {anime.data.broadcast.string ? (
                     <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <h4 className="text-sm">Broadcast :</h4>
-                        <h4 className="text-sm">{anime.data.broadcast.string}</h4>
+                        <span className="text-sm">Broadcast :</span>
+                        <span className="text-sm">{anime.data.broadcast.string}</span>
                     </div>
                     ) : null}
-                    {anime.data.producers ? (
-                    <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <h4 className="text-sm">Producers :</h4>
-                        <h4 className="text-sm">{anime.data.producers.map((producer, index) => (  index === anime.data.producers.length - 1 ? producer.name : producer.name + " , "))}</h4>
-                    </div>
-                    ) : null}
-
+                    {/*{anime.data.producers ? (*/}
+                    {/*<div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">*/}
+                    {/*    <span className="text-sm">Producers :</span>*/}
+                    {/*    <span className="text-sm">{anime.data.producers.map((producer, index) => (  index === anime.data.producers.length - 1 ? producer.name : producer.name + " , "))}</span>*/}
+                    {/*</div>*/}
+                    {/*) : null}*/}
                 </div>
             </div>
         </div>
