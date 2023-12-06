@@ -1,11 +1,12 @@
 import {getAnimeResponse} from "@/libs/api-libs";
 import Image from 'next/image'
-import {Video} from "@phosphor-icons/react";
 import VideoPlayer from "@/components/Utilities/VideoPlayer";
 import Link from "next/link";
 
 const Page = async ({params: {id}}) =>{
-    const anime = await getAnimeResponse({resource: `anime/${id}`})
+
+    const anime = await getAnimeResponse({resource: `anime/${id}`, query: ""})
+
     return (
         <>
             <div className="container mx-auto mt-8 mb-4">
