@@ -14,6 +14,9 @@ model Collection {
   id          Int @id @default(autoincrement())
   mal_id      String
   user_id     Int
+  images      String?
+  title       String?
+  type        String?
   user        User @relation(fields: [user_id], references: [id])
   @@unique([user_id, mal_id])
 }
@@ -22,5 +25,16 @@ model User {
   id          Int @id @default(autoincrement())
   email       String
   name        String
+  images      String?
   collections Collection[]
+  comment     Comment[]
+}
+
+model Comment {
+  id            Int @id @default(autoincrement())
+  mal_id        String
+  user_id       Int
+  title         String?
+  comment       String
+  user          User @relation(fields: [user_id], references: [id])
 }

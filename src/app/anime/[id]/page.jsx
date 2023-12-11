@@ -1,4 +1,4 @@
-
+import prisma from "@/libs/prisma";
 import {getAnimeResponse} from "@/libs/api-libs";
 import Image from 'next/image'
 import VideoPlayer from "@/components/Utilities/VideoPlayer";
@@ -6,11 +6,37 @@ import CollectionButton from "@/components/AnimeList/CollectionButton";
 import Link from "next/link";
 import React from "react";
 import {authSession} from "@/libs/auth-libs";
+import DetailAnimeTable from "@/components/AnimeList/DetailAnimeTable";
+import CommentInput from "@/components/AnimeList/CommentInput";
+import CommentList from "@/components/AnimeList/CommentList";
 
 const Page = async ({params: {id}}) =>{
 
+
     const anime = await getAnimeResponse({resource: `anime/${id}`, query: ""})
+
     const user = await authSession()
+    const userDb = await prisma.user.findFirst({
+        where: {
+            email: user?.email
+        }
+    })
+    const collection = await prisma.collection.findFirst({
+        where: {
+            mal_id: String(anime.data.mal_id),
+            user_id: userDb?.id
+        }
+    })
+
+    const getComment = await prisma.comment.findMany({
+        where: {
+            mal_id: String(anime.data.mal_id),
+        },
+        include: {
+            user: true,
+        },
+    })
+
 
     return (
         <>
@@ -20,7 +46,17 @@ const Page = async ({params: {id}}) =>{
                 <div className="flex-col flex text-color-primary sm:flex-nowrap flex-wrap">
                     <a href={anime.data.url} target="_blank" className="text-xs text-color-primary hover:text-color-accent transition-all underline">My Anime List Page</a>
                     <h1 className="text-3xl font-semibold text-color-primary ">
-                        {anime.data.title}<CollectionButton  mal_id={anime.data.mal_id} email={user?.email} name={user?.name}/></h1>
+                        {anime.data.title}
+                        {
+                            user ? (
+                                collection ? (
+                                    <CollectionButton status={true} mal_id={anime.data.mal_id}  title={anime.data?.title}   image={anime.data.images?.webp.image_url} type={anime.data?.type} email={user?.email} name={user?.name} user_image={user?.image}/>
+                                ) : (
+                                    <CollectionButton status={false} mal_id={anime.data.mal_id}  title={anime.data?.title}   image={anime.data.images?.webp.image_url} type={anime.data?.type} email={user?.email} name={user?.name} user_image={user?.image}/>
+                                )
+                            ) : null
+                        }
+                    </h1>
                     <p className="text-lg text-color-primary opacity-50">
                         {anime.data.title_english}
                     </p>
@@ -80,92 +116,18 @@ const Page = async ({params: {id}}) =>{
                 </div>
 
             </div>
-            <div className="flex flex-row px-8 pt-8 ">
-                <div className="flex flex-col w-full bg-color-accent ">
-                    <div className="flex flex-row text-color-dark gap-4 py-2 px-4">
-                        <h3 className="text-xl font-semibold ">Details</h3>
+            <DetailAnimeTable anime={anime}/>
+                <div className="flex flex-row px-8 pt-8 ">
+                    <div className="flex flex-col w-full bg-color-accent ">
+                        <div className="flex flex-row text-color-dark gap-4 justify-between">
+                            <span className="py-2  px-4 ">Tinggalkan Komentar</span>
+                            { !user && <span className="py-2 bg-color-error  px-4 ">Login Untuk Berkomentar</span>}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div className="flex flex-row px-8 mb-24">
-                <div className="flex flex-col w-full bg-color-darksecondary ">
-                    {anime.data.type ? (
-                    <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <span className="text-sm">Type :</span>
-                        <span className="text-sm">{anime.data.type}</span>
-                    </div>
-                    ) : null}
-                    {anime.data.episodes ? (
-                    <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <span className="text-sm">Episodes :</span>
-                        <span className="text-sm">{anime.data.episodes}</span>
-                    </div>
-                    ) : null}
-                    {anime.data.genres ? (
-                    <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <span className="text-sm">Genre :</span>
-                        <span className="text-sm">{anime.data.genres.map((genre, index) => (  index === anime.data.genres.length - 1 ? (
-                            <span key={index}>
-                                <Link href={`${genre.type}/genre/${genre.name}`} className="text-color-primary hover:text-color-accent transition-all">{genre.name}</Link>
-                            </span>
-                        ) : (
-                            <span key={index}>
-                                <Link href={`${genre.type}/genre/${genre.name}`} className="text-color-primary hover:text-color-accent transition-all">{genre.name}</Link><> , </>
-                            </span>
-                        )))}
-                        </span>
-                    </div>
-                    ) : null}
-                    {anime.data.source ? (
-                    <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <span className="text-sm">Source :</span>
-                        <span className="text-sm">{anime.data.source}</span>
-                    </div>
-                    ) : null}
-                    {anime.data.status ? (
-                    <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <span className="text-sm">Status :</span>
-                        <span className="text-sm">{anime.data.status}</span>
-                    </div>
-                    ) : null}
-                    {anime.data.aired.string ? (
-                    <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <span className="text-sm">Airing :</span>
-                        <span className="text-sm">{anime.data.aired.string}</span>
-                    </div>
-                    ) : null}
-                    {anime.data.duration ? (
-                    <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <span className="text-sm">Duration :</span>
-                        <span className="text-sm">{anime.data.duration}</span>
-                    </div>
-                    ) : null}
-                    {anime.data.rating ? (
-                    <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <span className="text-sm">Rating :</span>
-                        <span className="text-sm">{anime.data.rating}</span>
-                    </div>
-                    ) : null}
-                    {anime.data.favorites ? (
-                    <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <span className="text-sm">Favorites :</span>
-                        <span className="text-sm">{anime.data.favorites}</span>
-                    </div>
-                    ) : null}
-                    {anime.data.broadcast.string ? (
-                    <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <span className="text-sm">Broadcast :</span>
-                        <span className="text-sm">{anime.data.broadcast.string}</span>
-                    </div>
-                    ) : null}
-                    {anime.data.producers ? (
-                    <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                        <span className="text-sm">Producers :</span>
-                        <span className="text-sm">{anime.data.producers.map((producer, index) => (  index === anime.data.producers.length - 1 ? producer.name : producer.name + " , "))}</span>
-                    </div>
-                    ) : null}
-                </div>
-            </div>
+
+                {user && <CommentInput mal_id={anime.data.mal_id} title={anime.data.title} name={user?.name} email={user?.email} user_image={user?.image}/>}
+            <CommentList getComment={getComment}  email={user?.email}/>
         </div>
         <div>
             <VideoPlayer youtubeId={anime.data.trailer.youtube_id}/>

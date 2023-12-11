@@ -20,7 +20,7 @@ const Dashboard = async () =>
                                 My Collection
                             </button>
                         </Link>
-                        <Link href="/users/dashboard/collection">
+                        <Link href="/users/dashboard/comment">
                             <button className="bg-color-accent hover:bg-color-accentsecondary transition-all text-color-dark font-bold  py-2 px-4 rounded">
                                 My Comment
                             </button>
