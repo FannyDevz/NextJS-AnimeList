@@ -1,11 +1,16 @@
+
 import {getAnimeResponse} from "@/libs/api-libs";
 import Image from 'next/image'
 import VideoPlayer from "@/components/Utilities/VideoPlayer";
+import CollectionButton from "@/components/AnimeList/CollectionButton";
 import Link from "next/link";
+import React from "react";
+import {authSession} from "@/libs/auth-libs";
 
 const Page = async ({params: {id}}) =>{
 
     const anime = await getAnimeResponse({resource: `anime/${id}`, query: ""})
+    const user = await authSession()
 
     return (
         <>
@@ -15,8 +20,7 @@ const Page = async ({params: {id}}) =>{
                 <div className="flex-col flex text-color-primary sm:flex-nowrap flex-wrap">
                     <a href={anime.data.url} target="_blank" className="text-xs text-color-primary hover:text-color-accent transition-all underline">My Anime List Page</a>
                     <h1 className="text-3xl font-semibold text-color-primary ">
-                        {anime.data.title}
-                    </h1>
+                        {anime.data.title}<CollectionButton  mal_id={anime.data.mal_id} email={user?.email} name={user?.name}/></h1>
                     <p className="text-lg text-color-primary opacity-50">
                         {anime.data.title_english}
                     </p>
