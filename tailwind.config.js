@@ -23,6 +23,7 @@ module.exports = {
         darksecondary: '#0F0F3A',
         success: '#00ADB5',
         error: '#EF476F',
+        rating: '#FFD700',
         }
       }
   },

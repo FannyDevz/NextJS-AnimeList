@@ -27,16 +27,16 @@ const Page  =  () => {
         const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
         const clientHeight = document.documentElement.clientHeight || window.innerHeight;
-            if ( scrollTop + clientHeight >= scrollHeight - 10) {
-                setPage((prevPage) => prevPage + 1);
-                window.removeEventListener('scroll', handleScroll);
-            }
+        if ( scrollTop + clientHeight >= scrollHeight - 10) {
+            setPage((prevPage) => prevPage + 1);
+            window.removeEventListener('scroll', handleScroll);
+        }
     };
 
     useEffect(() => {
         fetchData(page).then(() => {
             console.log(page, maxPage)
-                window.addEventListener('scroll', handleScroll);
+            window.addEventListener('scroll', handleScroll);
         });
     }, [page]);
 
@@ -49,7 +49,7 @@ const Page  =  () => {
                 <Header title="Season Now Anime Page"   />
                 <AnimeList api={seasonNowAnime}/>
                 {loading && page <= maxPage &&<div className="p-12 flex justify-center items-center flex-row w-full">
-                   <div className="custom-loader" ></div>
+                    <div className="custom-loader" ></div>
                 </div>}
             </section>
             {/*<footer>*/}

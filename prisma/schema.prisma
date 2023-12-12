@@ -36,5 +36,6 @@ model Comment {
   user_id       Int
   title         String?
   comment       String
+  rating        Int?
   user          User @relation(fields: [user_id], references: [id])
 }

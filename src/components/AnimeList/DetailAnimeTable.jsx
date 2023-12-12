@@ -42,49 +42,49 @@ const DetailAnimeTable = ({anime}) =>{
                     ) : null}
                     {anime.data.source ? (
                         <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                            <span className="text-sm">Source :</span>
+                            <span className="text-sm">Source:</span>
                             <span className="text-sm">{anime.data.source}</span>
                         </div>
                     ) : null}
                     {anime.data.status ? (
                         <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                            <span className="text-sm">Status :</span>
+                            <span className="text-sm">Status:</span>
                             <span className="text-sm">{anime.data.status}</span>
                         </div>
                     ) : null}
                     {anime.data.aired.string ? (
                         <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                            <span className="text-sm">Airing :</span>
+                            <span className="text-sm">Airing:</span>
                             <span className="text-sm">{anime.data.aired.string}</span>
                         </div>
                     ) : null}
                     {anime.data.duration ? (
                         <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                            <span className="text-sm">Duration :</span>
+                            <span className="text-sm">Duration:</span>
                             <span className="text-sm">{anime.data.duration}</span>
                         </div>
                     ) : null}
                     {anime.data.rating ? (
                         <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                            <span className="text-sm">Rating :</span>
+                            <span className="text-sm">Rating:</span>
                             <span className="text-sm">{anime.data.rating}</span>
                         </div>
                     ) : null}
                     {anime.data.favorites ? (
                         <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                            <span className="text-sm">Favorites :</span>
+                            <span className="text-sm">Favorites:</span>
                             <span className="text-sm">{anime.data.favorites}</span>
                         </div>
                     ) : null}
                     {anime.data.broadcast.string ? (
                         <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                            <span className="text-sm">Broadcast :</span>
+                            <span className="text-sm">Broadcast:</span>
                             <span className="text-sm">{anime.data.broadcast.string}</span>
                         </div>
                     ) : null}
                     {anime.data.producers ? (
                         <div className="flex flex-row text-color-primary gap-4 py-2 px-4 border-b-2 border-r-2 border-l-2">
-                            <span className="text-sm">Producers :</span>
+                            <span className="text-sm">Producers:</span>
                             <span className="text-sm">{anime.data.producers.map((producer, index) => (  index === anime.data.producers.length - 1 ? producer.name : producer.name + " , "))}</span>
                         </div>
                     ) : null}

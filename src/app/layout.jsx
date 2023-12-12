@@ -15,7 +15,6 @@ export default function RootLayout({ children }) {
       <body className={`${poppins.className} bg-color-dark`} suppressContentEditableWarning={true}>
       <Navbar/>
       {children}
-
       </body>
     </html>
   )
