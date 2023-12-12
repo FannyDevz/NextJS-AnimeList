@@ -24,6 +24,11 @@ const Page = async () => {
             <Header title={`My Collection`} />
         </header>
         <div className="grid sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-8 grid-cols-2 gap-4 px-4">
+            {collection.length === 0 && (
+                <div className="flex flex-row text-color-dark gap-4 justify-center">
+                    <span className="my-10 p-2  px-4  bg-color-error rounded">Collection Kosong</span>
+                </div>
+            )}
             {collection.map ((anime) =>  (
                 <div key={anime.mal_id} className="shadow-xl bg-color-darksecondary relative hover:scale-105 transition-all duration-300 hover:opacity-75">
                     <div className="font-bold lg:text-md md:text-md text-sm p-2 bg-color-accent text-color-dark absolute right-0 top-0 text-right opacity-90">
