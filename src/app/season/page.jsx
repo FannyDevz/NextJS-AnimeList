@@ -4,54 +4,35 @@ import HeaderMenu from "@/components/Utilities/HeaderMenu";
 import Header from "@/components/AnimeListInfinity/Header";
 import {useEffect, useState} from "react";
 import {getAnimeResponse} from "@/libs/api-libs";
-const Page  =  () => {
-    const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(false);
-    const [seasonNowAnime, setSeasonNowAnime] = useState({ pagination: {}, data: [] });
-    const maxPage = seasonNowAnime.pagination?.last_visible_page;
-    const fetchData = async () => {
-        setLoading(true);
-        const data = await getAnimeResponse({ resource: "seasons/now", query: `page=${page}` });
-        if (page === 1) {
-            setSeasonNowAnime(data)
-        } else { await new Promise(resolve => setTimeout(resolve, 1000));
-            setSeasonNowAnime((prevData) => ({
-                pagination: data.pagination || {},
-                data: [...prevData.data, ...(data.data || [])],
-            }));
-        }
-        setLoading(false);
-    };
+import Link from "next/link";
+import Image from "next/image";
+import AnimeSeasonList from "@/components/AnimeList/AnimeSeasonList";
+const Page  = async () => {
 
-    const handleScroll = () => {
-        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-        const clientHeight = document.documentElement.clientHeight || window.innerHeight;
-        if ( scrollTop + clientHeight >= scrollHeight - 10) {
-            setPage((prevPage) => prevPage + 1);
-            window.removeEventListener('scroll', handleScroll);
-        }
-    };
-
-    useEffect(() => {
-        fetchData(page).then(() => {
-            console.log(page, maxPage)
-            window.addEventListener('scroll', handleScroll);
-        });
-    }, [page]);
-
+    const seasonList = await getAnimeResponse({ resource: "seasons" });
     return (
         <div className="container mx-auto mt-8 mb-4">
             <header>
-                <HeaderMenu title={`Season Now Anime `} description={`List of seasonal anime now ${page !== 1 ? `#${page}` : ''}`}/>
+                <HeaderMenu title={`Season Now Anime `} description={`List of seasonal anime `}/>
             </header>
-            <section>
-                <Header title="Season Now Anime Page"   />
-                <AnimeList api={seasonNowAnime}/>
-                {loading && page <= maxPage &&<div className="p-12 flex justify-center items-center flex-row w-full">
-                    <div className="custom-loader" ></div>
-                </div>}
-            </section>
+            <div>
+                {seasonList?.data?.map((season, index) => (
+                    <div key={index}>
+                        <div  className="flex flex-row px-8 pt-8 justify-end">
+                            <div className="flex flex-col w-full bg-color-accent justify-end">
+                                <div className="flex flex-row text-color-dark gap-4 justify-end">
+                                    <span className="py-2 text-3xl font-bold px-4 ">{season.year}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex flex-row gap-4 items-center justify-center px-8 pt-4 mb-6">
+                        {season?.seasons?.map((data, index) => (
+                            <AnimeSeasonList season={season} data={data} key={index} />
+                        ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
             {/*<footer>*/}
             {/*    /!*<Pagination page={page} setPage={setPage} lastPage = {seasonNowAnime.pagination?.last_visible_page} />*!/*/}
             {/*</footer>*/}

@@ -69,8 +69,8 @@ const Page = async ({params: {id}}) =>{
                     <Image
                         src={anime.data.images.jpg.image_url}
                         alt={anime.data.images.webp.image_url}
-                        width={700}
-                        height={1000}
+                        width={500}
+                        height={500}
                         quality={100}
                         className="rounded-lg object-cover"
                         priority
@@ -78,10 +78,17 @@ const Page = async ({params: {id}}) =>{
                 <div className="flex-col flex gap-4 text-color-primary ">
                     <div className="flex-row flex gap-2 text-color-primary sm:flex-nowrap flex-wrap ">
                         {anime.data.year ? (
-                            <div className=" flex-col flex rounded border bg-color-accent px-4 py-1 text-color-dark">
-                                <h3 className="text-md font-semibold">{anime.data.year}</h3>
-                                <p className="text-xs">{anime.data.season?.toUpperCase()}</p>
-                            </div>
+                                <div  className="shadow-xl bg-color-darksecondary relative hover:scale-105 transition-all duration-300 hover:opacity-75">
+                                    <Link
+                                        href={`/season/${anime.data.year}/${anime.data.season}`}
+                                        className="cursor-pointer text-color-primary hover:text-color-accent transition-all"
+                                    >
+                                        <div className=" flex-col flex rounded border bg-color-accent px-4 py-1 text-color-dark">
+                                            <h3 className="text-md font-semibold">{anime.data.year}</h3>
+                                            <p className="text-xs">{anime.data.season?.toUpperCase()}</p>
+                                        </div>
+                                    </Link>
+                                </div>
                         ) : null}
                         {anime.data.score ? (
                             <div className=" flex-col flex rounded border bg-color-accent px-4 py-1 text-color-dark">

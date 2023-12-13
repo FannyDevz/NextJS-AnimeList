@@ -17,11 +17,11 @@ const Home  = async () => {
                     <AnimeList api={recommendAnimeRandom}/>
                 </section>
                 <section>
-                    <Header title="Popular" url="/populer" urlTitle="Lihat Semua"/>
+                    <Header title="Popular" url="/populer" urlTitle="See More"/>
                     <AnimeList api={topAnime}/>
                 </section>
                 <section>
-                    <Header title="Season Now" url="/season" urlTitle="Lihat Semua"/>
+                    <Header title="Season Now" url="/season/now" urlTitle="See More"/>
                     <AnimeList api={seasonNow}/>
                 </section>
             </div>
