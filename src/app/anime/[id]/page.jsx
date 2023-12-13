@@ -39,7 +39,7 @@ const Page = async ({params: {id}}) =>{
 
 
     return (
-        <>
+        <><Image src={`/${anime.data.season}-bg.png`} alt="background" width={1920} height={200} className="absolute -top-64 left-0 -z-10 w-full h-full object-cover opacity-20" />
             <div className="container mx-auto mt-8 mb-4">
             <div className="flex sm:flex-nowrap flex-wrap gap-2 text-color-primary px-8 pt-4 items-center mb-4">
 
