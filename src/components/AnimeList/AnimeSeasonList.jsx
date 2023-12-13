@@ -17,7 +17,7 @@ const AnimeSeasonList = ({season, data}) => {
                     alt="..."
                     src={`/${data}.png`}
                 />
-                <h3 className="font-bold lg:text-md md:text-md bottom-0 left-0 bg-color-darksecondary w-full bg-opacity-50 absolute text-sm p-4 text-center">
+                <h3 className="font-bold lg:text-lg md:text-md text-xs bottom-0 left-0 bg-color-darksecondary w-full bg-opacity-50 absolute py-4 text-center">
                     { data.toLocaleUpperCase()}
                 </h3>
             </Link>

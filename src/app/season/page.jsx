@@ -21,11 +21,11 @@ const Page  = async () => {
                         <div  className="flex flex-row px-8 pt-8 justify-end">
                             <div className="flex flex-col w-full bg-color-accent justify-end">
                                 <div className="flex flex-row text-color-dark gap-4 justify-end">
-                                    <span className="py-2 text-3xl font-bold px-4 ">{season.year}</span>
+                                    <span className="py-2 text-2xl font-bold px-4 ">{season.year}</span>
                                 </div>
                             </div>
                         </div>
-                        <div className="flex flex-row gap-4 items-center justify-center px-8 pt-4 mb-6">
+                        <div className="grid grid-cols-4 gap-4 items-center justify-center px-8 pt-4 mb-6">
                         {season?.seasons?.map((data, index) => (
                             <AnimeSeasonList season={season} data={data} key={index} />
                         ))}
