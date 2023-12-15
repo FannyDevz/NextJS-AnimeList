@@ -4,7 +4,7 @@ import {getAnimeResponse, getNestedAnimeResponse, shuffleArray} from "@/libs/api
 
 const Home  = async () => {
     const topAnime = await getAnimeResponse({resource: "top/anime", query: "limit=8"})
-    const recommendAnime = await getNestedAnimeResponse({resource: "recommendations/anime" , objectProperty: "entry"})
+    const recommendAnime = await getNestedAnimeResponse({resource: "recommendations/anime" ,  query: "sfw" ,objectProperty: "entry"})
     const recommendAnimeRandom = shuffleArray(recommendAnime , 8);
 
     const seasonNow = await getAnimeResponse({resource: "seasons/now", query: "limit=8"})

@@ -5,8 +5,8 @@ export const getAnimeResponse = async ({resource, query} ) => {
     return await response.json()
 }
 
-export const getNestedAnimeResponse = async ({ resource, objectProperty }) => {
-    const response = await getAnimeResponse({ resource: resource });
+export const getNestedAnimeResponse = async ({ resource, query ,objectProperty }) => {
+    const response = await getAnimeResponse({ resource: resource , query: query });
 
     if (!response || !response.data) {
         console.error('Error: Response or response.data is undefined.');
