@@ -67,8 +67,8 @@ const Page = async ({params: {id}}) =>{
             <div className="flex md:flex-nowrap flex-wrap gap-8 text-color-primary px-8 pt-4">
 
                     <Image
-                        src={anime.data.images.jpg.image_url}
-                        alt={anime.data.images.webp.image_url}
+                        src={anime.data.images.webp.image_url}
+                        alt={anime.data.images.jpg.image_url}
                         width={500}
                         height={500}
                         quality={100}
